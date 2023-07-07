@@ -1,5 +1,17 @@
 //import data from "./data.js";
 
+const downloadDataBtn = document.querySelector('.download-data-btn');
+downloadDataBtn.addEventListener('click', () => {
+    chrome.storage.local.get("savedContent", (savedContent) => {
+        const link = document.createElement("a");
+        const file = new Blob([JSON.stringify(savedContent.savedContent)], { type: 'text/plain' });
+        link.href = URL.createObjectURL(file);
+        link.download = "sample.txt";
+        link.click();
+        URL.revokeObjectURL(link.href);
+    });
+})
+
 export function display(){
 
     //JSON.parse(localStorage.getItem("savedContent"))?.reverse().forEach((item, index) => {
@@ -67,6 +79,7 @@ export function display(){
             cardsList.appendChild(newCard);
         });
 
+        //function for removing items
         function remove(id){
             if(window.confirm("Are you sure you want to delete this item?")){
                 // let savedContent = JSON.parse(localStorage.getItem("savedContent"));
@@ -75,7 +88,6 @@ export function display(){
                 // console.log(savedContent);
                 // localStorage.setItem("savedContent", JSON.stringify(savedContent));
                 // display();
-                console.log(chrome.storage.local);
                 chrome.storage.local.get("savedContent", (savedContent) => {
                     savedContent.savedContent.splice(savedContent.savedContent.findIndex(e => e.id === id),1);
                     chrome.storage.local.set({savedContent: savedContent.savedContent}, () => {
@@ -86,6 +98,7 @@ export function display(){
             }
         }
 
+        //remove button listener
         const removeBtn = document.querySelectorAll('.remove-btn');
         removeBtn.forEach((item) => {
             item.addEventListener('click', (e) => {
