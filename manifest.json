@@ -8,7 +8,8 @@
     },
     "permissions": [
         "activeTab",
-        "scripting"
+        "scripting",
+        "storage"
     ],
     "options_page": "options.html",
     "action": {
