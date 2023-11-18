@@ -30,6 +30,7 @@ a {
     background-color: #eee;
     border-radius: 10%;
     margin-right: 0.5rem;
+    margin-block-end: 0;
 }
 
 /* Extra small devices (phones, 600px and down) */

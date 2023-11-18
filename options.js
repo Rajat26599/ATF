@@ -28,6 +28,7 @@ export function display(){
         
         //add fresh elements once again;
         savedContent.savedContent?.reverse().forEach((item, index) => {
+            console.log('item', item);
             const newCard = document.createElement("div");
             newCard.setAttribute("class", "card");
             
@@ -55,11 +56,20 @@ export function display(){
             ifrm.setAttribute("class", "preview");
             newCard.appendChild(ifrm);
 
+            const titlePanel = document.createElement("div");
+            titlePanel.setAttribute("class", "title-panel")
+
+            const id = document.createElement("span");
+            id.innerText = item.id + '. ';
+            titlePanel.appendChild(id);
+
             const link = document.createElement("a");
             link.innerText = item.link;
             link.setAttribute('href', item.link);
             link.setAttribute('target', "_blank");
-            newCard.appendChild(link);
+            titlePanel.appendChild(link);
+
+            newCard.appendChild(titlePanel);
             
             const tags = document.createElement("div");
             item.tags.forEach((tagName, tagIndex) => {
@@ -81,7 +91,7 @@ export function display(){
 
         //function for removing items
         function remove(id){
-            if(window.confirm("Are you sure you want to delete this item?")){
+            if(window.confirm(`Are you sure you want to delete ${id}?`)){
                 // let savedContent = JSON.parse(localStorage.getItem("savedContent"));
                 // console.log(savedContent);
                 // savedContent.splice(savedContent.findIndex(e => e.id === id),1);
@@ -105,6 +115,19 @@ export function display(){
                 remove(e.target.id);
             });
         });
+        
+        //function for edit item
+        function edit(id) {
+            console.log('Editing', id);
+        }
+
+        //edit button listener
+        const editBtn = document.querySelectorAll('.edit-btn');
+        editBtn.forEach((item) => {
+            item.addEventListener('click', e => {
+                edit(e.target.id);
+            });
+        })
     });
     
 }
