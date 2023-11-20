@@ -97,15 +97,10 @@ function addInLocal(obj){
 
 function updateInLocal(obj) {
     storage.get("savedContent", (savedContent) => {
-        let index = -1;
-        let arr = savedContent.savedContent;
-        for(let i=0; i<arr.length; i++) {
-            if(arr[i].link === obj.link) index = i;
-        }
-        console.log('index of duplicate item', index);
+        let index = savedContent.savedContent.findIndex(e => e.id == obj.id);
         try {
-            arr[index] = obj;
-            storage.set({savedContent: arr}, () => {
+            savedContent.savedContent[index] = obj;
+            storage.set({savedContent: savedContent.savedContent}, () => {
                 console.log('Updated item!', savedContent);
             })
         } catch {(e) => console.log(e)}
@@ -140,6 +135,6 @@ btn.addEventListener('click', (e) => {
         } else {
             addInLocal(obj);
         }
+        window.close();
     }).catch((e) => console.log(e));
-    window.close();
 });

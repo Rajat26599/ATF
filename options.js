@@ -99,7 +99,7 @@ export function display(){
                 // localStorage.setItem("savedContent", JSON.stringify(savedContent));
                 // display();
                 chrome.storage.local.get("savedContent", (savedContent) => {
-                    savedContent.savedContent.splice(savedContent.savedContent.findIndex(e => e.id === id),1);
+                    savedContent.savedContent.splice(savedContent.savedContent.findIndex(e => e.id == id),1);
                     chrome.storage.local.set({savedContent: savedContent.savedContent}, () => {
                         console.log("Removed Successfully!");
                         display();
