@@ -59,9 +59,16 @@ function populateTags(item) {
     } catch {(e) => console.log(e)}
 }
 
-const myurl = document.querySelector('.myurl');
+var obj = {};
 chrome.tabs.query({currentWindow: true, active: true}, function(tabs){
+    const myurl = document.querySelector('.myurl');
     myurl.value = tabs[0].url;
+
+    const mytitle = document.querySelector('.mytitle');
+    mytitle.value = tabs[0].title;
+    obj.title = tabs[0].title;
+    console.log('tabtitle', tabs[0].title);
+
     checkDuplicate({link: myurl.value})
     .then((duplicateItem) => {
         console.log('duplicateItem in then', duplicateItem);
@@ -119,11 +126,12 @@ btn.addEventListener('click', (e) => {
     var tagsList = popupFormData.get('tags').split(",").map(function(item) {
         if(item.trim().length>0) return item.trim();
     });
-    var obj = {
-        link: popupFormData.get('url'),
-        tags: tagsList,
-        createdOn: JSON.stringify(new Date()),
-    };
+
+    obj.title = popupFormData.get('title'); 
+    obj.link = popupFormData.get('url');
+    obj.tags = tagsList;
+    obj.createdOn = JSON.stringify(new Date());
+
     storage.get("savedContent", (savedContent) => {
         obj.id = savedContent.savedContent.length ? savedContent.savedContent.length : 0;
     });

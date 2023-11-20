@@ -9,20 +9,26 @@
     margin-left: 0.5rem;
     margin-right: 0.5rem;
     border: 1px solid grey;
+    border-radius: 0.2rem;
+    padding: 0.5rem;
     display: inline-block;
-    width: 30%;
 }
 .btn-panel {
     position: absolute;
     right: 0;
+    top: 0;
     font-weight: bold;    
     z-index: 9;
 }
-.preview {
+/* .preview {
     width: 99%;
+} */
+.title {
+    font-weight: bold;
 }
 a {
     word-wrap: break-word;
+    font-size: 0.6rem;
 }
 .tag {
     display: inline-block;
@@ -30,6 +36,7 @@ a {
     background-color: #eee;
     border-radius: 10%;
     margin-right: 0.5rem;
+    margin-block-start: 0.5em;
     margin-block-end: 0;
 }
 
@@ -60,6 +67,6 @@ a {
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
     .card {
-        width: 18%;
+        width: 17%;
     }
 }

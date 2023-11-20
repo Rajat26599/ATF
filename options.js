@@ -36,11 +36,11 @@ export function display(){
             const btnPanel = document.createElement("div");
             btnPanel.setAttribute("class", "btn-panel")
 
-            const edit = document.createElement("button");
-            edit.setAttribute("class", "edit-btn");
-            edit.setAttribute("id", item.id);
-            edit.innerHTML = "Edit";
-            btnPanel.appendChild(edit);        
+            // const edit = document.createElement("button");
+            // edit.setAttribute("class", "edit-btn");
+            // edit.setAttribute("id", item.id);
+            // edit.innerHTML = "Edit";
+            // btnPanel.appendChild(edit);        
 
             const remove = document.createElement("button");
             remove.setAttribute("class", "remove-btn");
@@ -51,10 +51,10 @@ export function display(){
             newCard.appendChild(btnPanel);
             //btn panel ends
 
-            const ifrm = document.createElement("iframe");
-            ifrm.setAttribute("src", item.link);
-            ifrm.setAttribute("class", "preview");
-            newCard.appendChild(ifrm);
+            // const ifrm = document.createElement("iframe");
+            // ifrm.setAttribute("src", item.link);
+            // ifrm.setAttribute("class", "preview");
+            // newCard.appendChild(ifrm);
 
             const titlePanel = document.createElement("div");
             titlePanel.setAttribute("class", "title-panel")
@@ -62,6 +62,14 @@ export function display(){
             const id = document.createElement("span");
             id.innerText = item.id + '. ';
             titlePanel.appendChild(id);
+
+            const title = document.createElement('span');
+            title.innerText = item.title;
+            title.setAttribute('class', 'title');
+            titlePanel.appendChild(title);
+
+            const lineBreak = document.createElement('br');
+            titlePanel.appendChild(lineBreak);
 
             const link = document.createElement("a");
             link.innerText = item.link;
